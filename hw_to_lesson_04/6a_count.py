@@ -10,14 +10,9 @@ from argparse import ArgumentParser
 from itertools import count
 import time
 
-"""
-в аргументе --count указывается целое числа, начиная с которого идет счет. 
-в аргументе --max - сколько раз выполнить счет в дополнение к стартовому числу
-"""
-
 parser = ArgumentParser()
-parser.add_argument('--count', type=int)
-parser.add_argument('--max', type=int)
+parser.add_argument('--count', type=int, help='указывается целое числа, начиная с которого идет счет')
+parser.add_argument('--max', type=int, help='сколько раз выполнить счет в дополнение к стартовому числу')
 args = parser.parse_args()
 
 for el in count(args.count):

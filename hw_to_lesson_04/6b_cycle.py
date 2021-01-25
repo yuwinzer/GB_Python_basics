@@ -9,10 +9,8 @@
 from argparse import ArgumentParser
 from itertools import cycle
 
-"""аргумент --max нужен для ограничения строк повтора цикла"""
-
 parser = ArgumentParser()
-parser.add_argument('--max', type=int)
+parser.add_argument('--max', type=int,  help='нужен для ограничения строк повтора цикла')
 args = parser.parse_args()
 
 random_str = [num for num in range(4)]
