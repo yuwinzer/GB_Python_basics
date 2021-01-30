@@ -9,7 +9,7 @@ import re
 
 subj_names = []  # заготовка для названий предметов
 hours = []  # заготовка под общее количество часов
-with open("input_for_06.txt") as f:
+with open("data/input_for_06.txt") as f:
     while True:
         line = f.readline()
         if not line:

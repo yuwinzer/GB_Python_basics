@@ -18,7 +18,7 @@ from statistics import mean
 names = []  # список имен фирм
 profits = []  # список прибылей и убытков фирм
 ave_prof = [] # список только прибылей
-with open("input_for_07.txt") as f:
+with open("data/input_for_07.txt") as f:
     while True:
         line = f.readline()
         if not line:
@@ -39,5 +39,5 @@ dict_ave = {"average_profit": average_profit}
 res_list = [dict_prof, dict_ave]
 print(res_list)
 
-with open('output_from_07.json', 'w') as f:
+with open('data/output_from_07.json', 'w') as f:
     json.dump(res_list, f)
