@@ -1,6 +1,7 @@
 import os
 import shutil
 
+os.makedirs("data", exist_ok=True)
 files = os.listdir()
 cur_dir = os.getcwd()
 destinationpath = 'data'
