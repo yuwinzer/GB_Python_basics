@@ -7,9 +7,6 @@
 # При этом английские числительные должны заменяться на русские. Новый блок строк должен записываться
 # в новый текстовый файл.
 
-# import codecs  # что-то в пайшарме некорректно показываются символы,
-# пытался решить через кодеки, но подумал необязательно
-
 eng_w = []
 numbers = []
 with open("data/input_for_04.txt") as f:
@@ -29,7 +26,6 @@ rus_nums = {value: eng_nums.get(key) for key, value in eng_rus.items()} #  из 
                                                                         # собирает в rus_nums словарь в виде:
                                                                         # "value из eng_rus": "value из eng_nums"
 
-# with codecs.open("data/output_from_04.txt", 'w', encoding='utf8') as f:
 with open("data/output_from_04.txt", 'w') as f:
     for k, v in rus_nums.items():
         f.write(f"{str(k)} - {str(v)} \n")

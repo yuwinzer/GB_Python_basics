@@ -8,7 +8,7 @@ r_num = []
 for i in range(10):
     r_num.append(random.randrange(100))
 print(f"Сгенерированные числа: {r_num}")
-r_num_str= (" ".join([str(elem) for elem in r_num]))
+r_num_str = (" ".join([str(elem) for elem in r_num]))
 with open(out_filename, "w") as f:
     f.write(r_num_str)  # пробелы между словами, но не в конце строки
 
