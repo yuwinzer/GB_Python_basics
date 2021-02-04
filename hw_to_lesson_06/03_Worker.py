@@ -5,18 +5,15 @@
 # (get_total_income). Проверить работу примера на реальных данных (создать экземпляры класса Position, передать данные,
 # проверить значения атрибутов, вызвать методы экземпляров).
 
+
 class Worker:
-    name = "name"
-    surname = "surname"
-    position = "position"
-    income = "income"
 
     def __init__(self, name, surname, position, income=0):
         self.name = name
         self.surname = surname
         self.position = position
-        self.income = income
-        self.sal_dict = {"wage": income, "bonus": round(income * 0.1)}
+        sal_dict = {"wage": income, "bonus": round(income * 0.1)}
+        self._income = sal_dict
 
 
 class Position(Worker):
@@ -26,7 +23,7 @@ class Position(Worker):
         print(get_full_name)
 
     def get_total_income(self):
-        get_total_income = f"Total income is {self.sal_dict['wage'] + self.sal_dict['bonus']}"
+        get_total_income = f"Total income is {self._income['wage'] + self._income['bonus']}"
         print(get_total_income)
 
 
@@ -36,7 +33,7 @@ print("Атрибуты:")
 print(worker_1.name)
 print(worker_1.surname)
 print(worker_1.position)
-print(worker_1.income)
+print(worker_1._income)
 
 print("\nМетоды:")
 worker_1.get_full_name()

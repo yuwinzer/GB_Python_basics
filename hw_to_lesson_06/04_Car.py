@@ -17,7 +17,7 @@ class Car:
 
     def stop(self):
         self.speed = 0
-        print(f"Установлена скорость {self.speed} км/ч")
+        print(f"Машина остановлена")
 
     def turn(self, direction):
         print(f"Совершен разворот {direction} на скорости {self.speed}")
@@ -75,3 +75,4 @@ car_3.show_speed()
 car_3.go(100)
 car_3.turn('направо')
 print(f"{car_3.is_police = }")
+print(car_3.myName)
