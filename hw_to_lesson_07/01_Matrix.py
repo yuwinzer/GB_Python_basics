@@ -16,39 +16,32 @@ class Matrix:
         self.body = body
 
     def __str__(self):
-        """
-        не требуется print для вывода списка списков в виде матрицы
-        """
-        def matrix_beauty(something):
-            for i in range(len(something)):
-                for j in range(len(something[i])):
-                    print(f"{something[i][j]}", end="\t")
-                print()
-            print()
-        return f"{matrix_beauty(self.body)}"
+        matrix_p = ""
+        for i in range(len(self.body)):
+            matrix_temp = '\t'.join(str(j) for j in self.body[i])
+            matrix_p += matrix_temp + "\n"
+        return f'{matrix_p}'
 
     def __add__(self, other_matrix):
         """
         в результате сложения двух матриц, вторая обнуляется!
         """
+        new_matrix = []
         for i in range(len(self.body)):
+            new_line = []
             for j in range(len(self.body[i])):
-                self.body[i][j] += other_matrix[i][j]
-                other_matrix[i][j] = 0  # обнуляем вторую матрицу
+                new_line.append(self.body[i][j] + other_matrix.body[i][j])
+            new_matrix.append(new_line)
+        return Matrix(new_matrix)
 
-
-list_a = [[10, 20, 30], [40, 50, 60]]
-list_b = [[100, 200, 300], [400, 500, 600]]
-print(f"{len(list_a) = }")
-print(f"{len(list_a[0]) = }")
-
-new_matrix = Matrix(list_a)
 print("first matrix:")
-str(new_matrix)
+matr_a = Matrix([[10, 20, 30], [40, 50, 60]])
+print(matr_a)
 
 print("second matrix:")
-str(Matrix(list_b))
+matr_b = Matrix([[100, 200, 300], [400, 500, 600]])
+print(matr_b)
 
 print("result of a sum:")
-new_matrix + list_b
-str(new_matrix)
+matr_c = matr_a + matr_b
+print(matr_c)
