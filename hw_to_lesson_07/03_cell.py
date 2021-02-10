@@ -29,64 +29,62 @@
 
 class ZeroCellule(ValueError):
     def __init__(self, message):
-        self.message = f'{message}. Please choose sells with different numbers of cellules'
+        self.message = f'{message}. Please choose sells with different numbers of cells'
         super().__init__(self.message)
 
 
 class Cell:
-    cellule_n = int
+    cells = int
 
-    def __init__(self, cellule_n):
-        self.cellule_n = cellule_n
+    def __init__(self, cells):
+        self.cells = cells
 
     def __add__(self, other):
         """
         содержимое второй клетки в результате процесса обнуляется
         """
-        self.cellule_n += other.cellule_n
-        other.cellule_n = 0  # ячейки второй клетки поглощены
+        self.cells += other.cells
+        other.cells = 0  # ячейки второй клетки поглощены
 
     def __sub__(self, other):
         """
         содержимое второй клетки в результате процесса обнуляется
         """
-        if abs(self.cellule_n - other.cellule_n) == 0:
-            raise ZeroCellule('Zero cellules remain')
-        if self.cellule_n >= other.cellule_n:
-            self.cellule_n -= other.cellule_n
-            other.cellule_n = 0  # ячейки второй клетки поглощены
+        if abs(self.cells - other.cells) == 0:
+            raise ZeroCellule('Zero cells remain')
+        if self.cells >= other.cells:
+            self.cells -= other.cells
+            other.cells = 0  # ячейки второй клетки поглощены
         else:
-            other.cellule_n -= self.cellule_n
-            self.cellule_n = other.cellule_n
-            other.cellule_n = 0  # ячейки второй клетки поглощены
+            other.cells -= self.cells
+            self.cells = other.cells
+            other.cells = 0  # ячейки второй клетки поглощены
 
     def __mul__(self, other):
         """
         содержимое второй клетки в результате процесса обнуляется
         """
-        self.cellule_n *= other.cellule_n
-        other.cellule_n = 0  # ячейки второй клетки поглощены
+        self.cells *= other.cells
+        other.cells = 0  # ячейки второй клетки поглощены
 
     def __truediv__(self, other):
         """
         содержимое второй клетки в результате процесса обнуляется
         """
-        self.cellule_n //= other.cellule_n
-        other.cellule_n = 0  # ячейки второй клетки поглощены
+        self.cells //= other.cells
+        other.cells = 0  # ячейки второй клетки поглощены
 
     def make_order(self, order_n):
         self.order_n = order_n
-        repeat_ord_n = self.cellule_n // order_n
+        repeat_ord_n = self.cells // order_n
         symbols = "*" * order_n + "\n"
-        last_symbols = self.cellule_n % order_n * "*"
-        str_symbols = [symbols * repeat_ord_n, last_symbols] # наполняем список звездочками
+        last_symbols = self.cells % order_n * "*"
+        str_symbols = [symbols * repeat_ord_n, last_symbols]  # наполняем список звездочками
         str_out = ''.join(str_symbols)  # преобразуем список в строку
         print(f"{str_out}")
-        # print(f"{symbols * repeat_ord_n}")
-        # print(f"{last_symbols}")
 
     def __str__(self):
-        return f"{self.cellule_n}"
+        return f"{self.cells}"
 
 
 # тестирование:
@@ -101,31 +99,31 @@ print('\nadd:')
 print(f"{str(cell_1) =}")
 print(f"{str(cell_2) =}")
 
-cell_1.cellule_n = 5  # хилим первую клетку
-cell_2.cellule_n = 3  # хилим вторую клетку
+cell_1.cells = 5  # хилим первую клетку
+cell_2.cells = 3  # хилим вторую клетку
 cell_1 - cell_2  # в первой клетке остается разница ячеек
 print('\nsub:')
 print(f"{str(cell_1) =}")
 print(f"{str(cell_2) =}")
 
-cell_1.cellule_n = 5  # хилим первую клетку
-cell_2.cellule_n = 3  # хилим вторую клетку
+cell_1.cells = 5  # хилим первую клетку
+cell_2.cells = 3  # хилим вторую клетку
 cell_1 * cell_2  # в первой клетке остаются мутированные ячейки
 print('\nmul:')
 print(f"{str(cell_1) =}")
 print(f"{str(cell_2) =}")
 
-cell_1.cellule_n = 5  # хилим первую клетку
-cell_2.cellule_n = 3  # хилим вторую клетку
+cell_1.cells = 5  # хилим первую клетку
+cell_2.cells = 3  # хилим вторую клетку
 cell_1 / cell_2  # в первой клетке остаются мутированные ячейки
 print('\ntruediv:')
 print(f"{str(cell_1) =}")
 print(f"{str(cell_2) =}")
 
-cell_1.cellule_n = 14  # хилим первую клетку
+cell_1.cells = 14  # хилим первую клетку
 
 # print(f'\n{cell_1.order_n = }')
 print('\nmake_order:')
 cell_1.make_order(4)
-print(f'{cell_1.cellule_n = }')
+print(f'{cell_1.cells = }')
 print(f'{cell_1.order_n = }')
