@@ -11,8 +11,8 @@ from abc import ABC, abstractmethod
 
 class Clothes(ABC):
 
-    def __add__(self, other):
-        return self.consumption() + other.consumption()
+    def __init__(self, name):
+        self.name = name
 
     @abstractmethod
     def consumption(self):
@@ -20,34 +20,38 @@ class Clothes(ABC):
 
 
 class Coat(Clothes):
-    size = None
-
-    def __init__(self, v):
-        self.v = v
+    v = 0
 
     @property
     def consumption(self):
         return round(self.v / 6.5 + 0.5, 2)
 
+    def __add__(self, other):
+        new_c = self.consumption + other.consumption
+        return new_c
+
 
 class Costume(Clothes):
-
-    def __init__(self, h):
-        self.h = h
+    h = 0
 
     @property
     def consumption(self):
         return round(2 * self.h + 0.3, 2)
 
+    def __add__(self, other):
+        new_c = self.consumption + other.consumption
+        return new_c
 
-new_coat = Coat(42)
-print(new_coat.consumption())
 
-new_costume = Costume(180)
-print(new_costume.consumption())
+new_coat = Coat('Пальто')
+new_coat.v = 50
+print(new_coat.consumption)
+
+new_costume = Costume("Смокинг")
+new_costume.h = 180
+print(new_costume.consumption)
 
 overal_consumption = new_coat + new_costume
-print(f"{overal_consumption = }")
 
 
 def beautiful(func):
@@ -65,5 +69,3 @@ def print_results():
 
 
 print_results()
-
-
