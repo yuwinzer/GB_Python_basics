@@ -8,23 +8,32 @@ class Date:
 
     @classmethod
     def date_to_int(cls, date_str):
-        return int(date_str.replace('-', ''))
+        return list(map(int, date_str.split('-')))
 
     @staticmethod
     def date_check(date_str):
-        numbers = date_str.split("-")
-        print(f"{numbers = }")
-        if not (13 > int(numbers[0]) > 0):
-            print("число введено неправильно")
-        elif not (13 > int(numbers[1]) > 0):
-            print("месяц введен неправильно")
-        elif not (9999 > int(numbers[2]) > 0):
-            print("год введен неправильно")
+        ddmmyy = list(map(int, Date.date_to_int(date_str)))
+        big_months = [1, 3, 5, 7, 8, 10, 12]
+        is_leap = 1 if ddmmyy[2] % 400 == 0 or (ddmmyy[2] % 4 == 0 and ddmmyy[2] % 100 != 0) else 0
+        if 0 <= int(ddmmyy[2]) <= 9999 and 1 <= int(ddmmyy[1]) <= 12:
+            if 1 <= int(ddmmyy[0]) <= (28 and is_leap if ddmmyy[1] == 2 else 31 if ddmmyy[1] in big_months else 30):
+                print(f"Дата {date_str} введена верно")
+            else:
+                print(f"Дата {date_str} введена неверно")
         else:
-            print(f"Формат даты введен правильно")
-
+            print(f"Дата {date_str} введена неверно")
 
 date_1 = "07-05-1997"
-print(Date.date_to_int(date_1))
+Date.date_check(date_1)
 
+date_1 = "29-02-2020"
+Date.date_check(date_1)
+
+date_1 = "29-02-2021"
+Date.date_check(date_1)
+
+date_1 = "20-02-19999"
+Date.date_check(date_1)
+
+date_1 = "99-02-2021"
 Date.date_check(date_1)
